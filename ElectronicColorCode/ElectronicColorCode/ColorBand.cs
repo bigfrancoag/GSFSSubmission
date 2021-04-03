@@ -35,54 +35,67 @@ namespace ElectronicColorCode
             switch (input.Trim().ToLower())
             {
                 case "pink":
+                case "pk":
                     colorBand = ColorBand.Pink;
                     return true;
 
                 case "silver":
+                case "sr":
                     colorBand = ColorBand.Silver;
                     return true;
 
                 case "gold":
+                case "gd":
                     colorBand = ColorBand.Gold;
                     return true;
 
                 case "black":
+                case "bk":
                     colorBand = ColorBand.Black;
                     return true;
 
                 case "brown":
+                case "bn":
                     colorBand = ColorBand.Brown;
                     return true;
 
                 case "red":
+                case "rd":
                     colorBand = ColorBand.Red;
                     return true;
 
                 case "orange":
+                case "og":
                     colorBand = ColorBand.Orange;
                     return true;
 
                 case "yellow":
+                case "ye":
                     colorBand = ColorBand.Yellow;
                     return true;
 
                 case "green":
+                case "gn":
                     colorBand = ColorBand.Green;
                     return true;
 
                 case "blue":
+                case "bu":
                     colorBand = ColorBand.Blue;
                     return true;
 
                 case "violet":
+                case "vt":
                     colorBand = ColorBand.Violet;
                     return true;
 
                 case "grey":
+                case "gy":
                     colorBand = ColorBand.Grey;
                     return true;
 
                 case "white":
+                case "wh":
                     colorBand = ColorBand.White;
                     return true;
 
