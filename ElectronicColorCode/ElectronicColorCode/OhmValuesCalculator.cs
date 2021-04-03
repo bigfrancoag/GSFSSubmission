@@ -55,7 +55,7 @@ namespace ElectronicColorCode
                 throw new ArgumentException($"unable to parse: {bandDColor}", nameof(bandDColor));
             }
 
-            throw new NotImplementedException();
+            return (colorBandA.SignificantFigure.Value * 10 + colorBandB.SignificantFigure.Value) * colorBandC.Multiplier;
         }
     }
 }

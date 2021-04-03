@@ -48,5 +48,20 @@ namespace ElectronicColorCode.Test
 
             Assert.Equal(expected, exception.ParamName);
         }
+
+        [Theory]
+        [InlineData("red", "violet", "green", "gold", 2700000)]
+        [InlineData("blue", "grey", "red", "gold", 6800)]
+        [InlineData("red", "red", "orange", "gold", 22000)]
+        [InlineData("yellow", "violet", "brown", "gold", 470)]
+        [InlineData("blue", "grey", "black", "gold", 68)]
+        public void TestOhmValuesCalculatorValid(string first, string second, string third, string fourth, int expected)
+        {
+            var sut = new OhmValuesCalculator();
+
+            var result = sut.CalculateOhmValue(first, second, third, fourth);
+
+            Assert.Equal(expected, result);
+        }
     }
 }
