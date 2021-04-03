@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ElectronicColorCode;
 using Xunit;
 
@@ -87,6 +88,31 @@ namespace ElectronicColorCode.Test
             {
                 Assert.True(false, $"expected '{validInput}' to parse as '{expected}'");
             }
+        }
+
+        [Theory]
+        [MemberData(nameof(SignificantFigureData))]
+        public void TestSignificantFigure(ColorBand colorBand, int? expected)
+        {
+            Assert.Equal(expected, colorBand.SignificantFigure);
+        }
+
+        public static IEnumerable<object[]> SignificantFigureData()
+        {
+            yield return new object[] { ColorBand.Pink, null };
+            yield return new object[] { ColorBand.Silver, null };
+            yield return new object[] { ColorBand.Gold, null };
+            yield return new object[] { ColorBand.Black, 0 };
+            yield return new object[] { ColorBand.Brown, 1 };
+            yield return new object[] { ColorBand.Red, 2 };
+            yield return new object[] { ColorBand.Orange, 3 };
+            yield return new object[] { ColorBand.Yellow, 4 };
+            yield return new object[] { ColorBand.Green, 5 };
+            yield return new object[] { ColorBand.Blue, 6 };
+            yield return new object[] { ColorBand.Violet, 7 };
+            yield return new object[] { ColorBand.Grey, 8 };
+            yield return new object[] { ColorBand.White, 9 };
+            yield break;
         }
     }
 }
