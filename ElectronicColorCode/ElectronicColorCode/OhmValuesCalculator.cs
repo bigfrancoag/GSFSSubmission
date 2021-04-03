@@ -6,6 +6,16 @@ namespace ElectronicColorCode
     {
         public int CalculateOhmValue(string bandAColor, string bandBColor, string bandCColor, string bandDColor)
         {
+            var firstDigit = ParseFirstSignificantFigure(bandAColor);
+            var secondDigit = ParseSecondSignificantFigure(bandBColor);
+            var multiplier = ParseMultiplier(bandCColor);
+            ParseTolerance(bandDColor);
+
+            return (firstDigit * 10 + secondDigit) * multiplier;
+        }
+
+        private static int ParseFirstSignificantFigure(string bandAColor)
+        {
             if (bandAColor == null)
             {
                 throw new ArgumentNullException(nameof(bandAColor));
@@ -20,7 +30,11 @@ namespace ElectronicColorCode
                 throw new ArgumentException($"invalid color for first significant figure: {bandAColor}", nameof(bandAColor));
             }
 
+            return colorBandA.SignificantFigure.Value;
+        }
 
+        private static int ParseSecondSignificantFigure(string bandBColor)
+        {
             if (bandBColor == null)
             {
                 throw new ArgumentNullException(nameof(bandBColor));
@@ -34,7 +48,12 @@ namespace ElectronicColorCode
             {
                 throw new ArgumentException($"invalid color for second significant figure: {bandBColor}", nameof(bandBColor));
             }
+            
+            return colorBandB.SignificantFigure.Value;
+        }
 
+        private static int ParseMultiplier(string bandCColor)
+        {
             if (bandCColor == null)
             {
                 throw new ArgumentNullException(nameof(bandCColor));
@@ -45,6 +64,11 @@ namespace ElectronicColorCode
                 throw new ArgumentException($"unable to parse: {bandCColor}", nameof(bandCColor));
             }
 
+            return colorBandC.Multiplier;
+        }
+
+        private static void ParseTolerance(string bandDColor)
+        {
             if (bandDColor == null)
             {
                 throw new ArgumentNullException(nameof(bandDColor));
@@ -54,8 +78,6 @@ namespace ElectronicColorCode
             {
                 throw new ArgumentException($"unable to parse: {bandDColor}", nameof(bandDColor));
             }
-
-            return (colorBandA.SignificantFigure.Value * 10 + colorBandB.SignificantFigure.Value) * colorBandC.Multiplier;
         }
     }
 }
