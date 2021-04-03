@@ -31,9 +31,10 @@ namespace ElectronicColorCode
 
         public static bool TryParse(string input, out ColorBand colorBand)
         {
+            colorBand = null;
             if (input == null)
             {
-                throw new NotImplementedException();
+                return false;
             }
 
             switch (input.Trim().ToLower())
@@ -104,7 +105,7 @@ namespace ElectronicColorCode
                     return true;
 
                 default:
-                    throw new NotImplementedException();
+                    return false;
             }
         }
     }

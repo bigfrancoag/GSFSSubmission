@@ -91,6 +91,20 @@ namespace ElectronicColorCode.Test
         }
 
         [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData(" ")]
+        [InlineData("   ")]
+        [InlineData("bad data")]
+        [InlineData("pink black")]
+        [InlineData("browns")]
+        [InlineData("gray")]
+        public void TestTryParseFailurers(string invalidInput)
+        {
+            Assert.False(ColorBand.TryParse(invalidInput, out _));
+        }
+
+        [Theory]
         [MemberData(nameof(SignificantFigureData))]
         public void TestSignificantFigure(ColorBand colorBand, int? expectedSignificantFigure, int expectedMultiplier)
         {
