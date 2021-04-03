@@ -1,7 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SubItemSummary
 {
+    public class SubItemSummary
+    {
+    }
+
+    public class Item
+    {
+        public IEnumerable<Item> GetSubItems()
+        {
+            throw new NotImplementedException("stub");
+        }
+    }
+
     public class ChallengeThree
     {
         /// <summary>
@@ -22,6 +36,24 @@ namespace SubItemSummary
             }
 
             return subItemSummary.ToArray();
+        }
+
+        public SubItemSummary[] GetSubItemSummary2(string itemNumber)
+        {
+            return GetSubItems(itemNumber)?
+                .SelectMany(item => TransformSubItems(item, item.GetSubItems()))
+                .ToArray()
+                ?? new SubItemSummary[0];
+        }
+
+        private IEnumerable<Item> GetSubItems(string itemNumber)
+        {
+            throw new NotImplementedException("stub");
+        }
+        
+        private IEnumerable<SubItemSummary> TransformSubItems(Item item, IEnumerable<Item> subItems)
+        {
+            throw new NotImplementedException("stub");
         }
     }
 }
