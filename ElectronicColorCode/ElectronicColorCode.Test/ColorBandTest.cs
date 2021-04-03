@@ -92,26 +92,27 @@ namespace ElectronicColorCode.Test
 
         [Theory]
         [MemberData(nameof(SignificantFigureData))]
-        public void TestSignificantFigure(ColorBand colorBand, int? expected)
+        public void TestSignificantFigure(ColorBand colorBand, int? expectedSignificantFigure, int expectedMultiplier)
         {
-            Assert.Equal(expected, colorBand.SignificantFigure);
+            Assert.Equal(expectedSignificantFigure, colorBand.SignificantFigure);
+            Assert.Equal(expectedMultiplier, colorBand.Multiplier);
         }
 
         public static IEnumerable<object[]> SignificantFigureData()
         {
-            yield return new object[] { ColorBand.Pink, null };
-            yield return new object[] { ColorBand.Silver, null };
-            yield return new object[] { ColorBand.Gold, null };
-            yield return new object[] { ColorBand.Black, 0 };
-            yield return new object[] { ColorBand.Brown, 1 };
-            yield return new object[] { ColorBand.Red, 2 };
-            yield return new object[] { ColorBand.Orange, 3 };
-            yield return new object[] { ColorBand.Yellow, 4 };
-            yield return new object[] { ColorBand.Green, 5 };
-            yield return new object[] { ColorBand.Blue, 6 };
-            yield return new object[] { ColorBand.Violet, 7 };
-            yield return new object[] { ColorBand.Grey, 8 };
-            yield return new object[] { ColorBand.White, 9 };
+            yield return new object[] { ColorBand.Pink, null, 0 };
+            yield return new object[] { ColorBand.Silver, null, 0 };
+            yield return new object[] { ColorBand.Gold, null, 0 };
+            yield return new object[] { ColorBand.Black, 0, 1 };
+            yield return new object[] { ColorBand.Brown, 1, 10 };
+            yield return new object[] { ColorBand.Red, 2, 100 };
+            yield return new object[] { ColorBand.Orange, 3, 1000 };
+            yield return new object[] { ColorBand.Yellow, 4, 10000 };
+            yield return new object[] { ColorBand.Green, 5, 100000 };
+            yield return new object[] { ColorBand.Blue, 6, 1000000 };
+            yield return new object[] { ColorBand.Violet, 7, 10000000 };
+            yield return new object[] { ColorBand.Grey, 8, 100000000 };
+            yield return new object[] { ColorBand.White, 9, 1000000000 };
             yield break;
         }
     }
